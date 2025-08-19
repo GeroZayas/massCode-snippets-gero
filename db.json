@@ -1,0 +1,210 @@
+{
+  "folders": [
+    {
+      "name": "FastAPI",
+      "parentId": "XZfpK7FI",
+      "isOpen": false,
+      "isSystem": false,
+      "defaultLanguage": "python",
+      "id": "8be2oNA3",
+      "createdAt": 1755431476563,
+      "updatedAt": 1755581154933,
+      "index": 0
+    },
+    {
+      "id": "XZfpK7FI",
+      "name": "Python",
+      "defaultLanguage": "python",
+      "parentId": null,
+      "isOpen": true,
+      "isSystem": false,
+      "createdAt": 1755431373231,
+      "updatedAt": 1755581145406,
+      "index": 0
+    },
+    {
+      "name": "Odin",
+      "parentId": null,
+      "isOpen": false,
+      "isSystem": false,
+      "defaultLanguage": "plain_text",
+      "id": "Vg23dLdL",
+      "createdAt": 1755431499467,
+      "updatedAt": 1755431504083,
+      "index": 1
+    },
+    {
+      "name": "JavaScript",
+      "parentId": null,
+      "isOpen": false,
+      "isSystem": false,
+      "defaultLanguage": "javascript",
+      "id": "aRSwreFF",
+      "createdAt": 1755431507609,
+      "updatedAt": 1755581191729,
+      "index": 2
+    }
+  ],
+  "snippets": [
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "8be2oNA3",
+      "tagsIds": [
+        "w--kymXb",
+        "KaX7rqne"
+      ],
+      "description": null,
+      "name": "Usual Imports - FastAPI",
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "python",
+          "value": "from fastapi import FastAPI, HTTPException, Depends, Request\nfrom fastapi.responses import JSONResponse, HTMLResponse\nfrom fastapi.middleware.cors import CORSMiddleware\nfrom fastapi.security import OAuth2PasswordBearer\nfrom pydantic import BaseModel\nfrom typing import List, Optional\nfrom datetime import datetime\nfrom uuid import UUID, uuid4"
+        }
+      ],
+      "id": "INCn0wi8",
+      "createdAt": 1755431514466,
+      "updatedAt": 1755432586001
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "8be2oNA3",
+      "tagsIds": [
+        "w--kymXb"
+      ],
+      "description": null,
+      "name": "Add CORS Middleware",
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "python",
+          "value": "app = FastAPI()\n\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],  # Allow all origins\n    allow_credentials=True,\n    allow_methods=[\"*\"],  # Allow all methods\n    allow_headers=[\"*\"],  # Allow all headers\n)\n\n"
+        }
+      ],
+      "id": "lETCDNRV",
+      "createdAt": 1755431769114,
+      "updatedAt": 1755431793417
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "Untitled snippet",
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "plain_text",
+          "value": ""
+        }
+      ],
+      "id": "p5TKFnJt",
+      "createdAt": 1755432300595,
+      "updatedAt": 1755432300595
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "8be2oNA3",
+      "tagsIds": [
+        "w--kymXb"
+      ],
+      "description": null,
+      "name": "Static Files FastAPI",
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "python",
+          "value": "from fastapi import FastAPI\n# ==========================================\nfrom fastapi.staticfiles import StaticFiles\n# ==========================================\n\napp = FastAPI()\n\n# ====================================================================\napp.mount(\"/static\", StaticFiles(directory=\"static\"), name=\"static\")\n# ====================================================================\n\n"
+        }
+      ],
+      "id": "L119bWiM",
+      "createdAt": 1755432313062,
+      "updatedAt": 1755432536572
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "8be2oNA3",
+      "tagsIds": [
+        "w--kymXb"
+      ],
+      "description": null,
+      "name": "Templates FastAPI",
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "python",
+          "value": "from fastapi.templating import Jinja2Templates\n\n\ntemplates = Jinja2Templates(directory=\"templates\")\n\n\n@app.get(\"/items/{id}\", response_class=HTMLResponse)\nasync def read_item(request: Request, id: str):\n    return templates.TemplateResponse(\n        request=request, name=\"item.html\", context={\"id\": id}\n    )"
+        }
+      ],
+      "id": "Yg8M9Pb4",
+      "createdAt": 1755432498141,
+      "updatedAt": 1755432565802
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "XZfpK7FI",
+      "tagsIds": [
+        "JxMnaM_i",
+        "H5F8Dweh",
+        "jSCewl7p",
+        "5J-gusPa"
+      ],
+      "description": null,
+      "name": "urllib - Respect Robots.txt",
+      "content": [
+        {
+          "label": "Fragment 1",
+          "language": "python",
+          "value": "from urllib.parse import urlparse\nfrom urllib.robotparser import RobotFileParser\n\n# Look at this cool function to respect robots.txt\n\n\nUSER_AGENT = (\n    \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \"\n    \"(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36\"\n)\n\n\ndef _respect_robots(url: str, timeout: int = 10) -> bool:\n    parsed = urlparse(url)\n    \n    # the scheme is something like \"https\"\n    # the netloc is the domain, e.g. www.dim.fr\n    robots_url = f\"{parsed.scheme}://{parsed.netloc}/robots.txt\"\n\n    rp = RobotFileParser()\n    \n    try:\n        rp.set_url(robots_url)\n        rp.read()\n    \n    except Exception:\n        # If robots.txt is not reachable, default to allow (common practice)\n        return True\n\n    return rp.can_fetch(USER_AGENT, url)\n"
+        }
+      ],
+      "id": "91zDnQ9t",
+      "createdAt": 1755580924620,
+      "updatedAt": 1755581090786
+    }
+  ],
+  "tags": [
+    {
+      "name": "FastAPI",
+      "id": "w--kymXb",
+      "createdAt": 1755431527629,
+      "updatedAt": 1755431527629
+    },
+    {
+      "name": "Imports",
+      "id": "KaX7rqne",
+      "createdAt": 1755431531080,
+      "updatedAt": 1755431531080
+    },
+    {
+      "name": "urllib",
+      "id": "JxMnaM_i",
+      "createdAt": 1755580932277,
+      "updatedAt": 1755580932277
+    },
+    {
+      "name": "Python",
+      "id": "H5F8Dweh",
+      "createdAt": 1755580938796,
+      "updatedAt": 1755580938796
+    },
+    {
+      "name": "WebDevelopment",
+      "id": "jSCewl7p",
+      "createdAt": 1755580946361,
+      "updatedAt": 1755580946361
+    },
+    {
+      "name": "Scraping",
+      "id": "5J-gusPa",
+      "createdAt": 1755580950099,
+      "updatedAt": 1755580950099
+    }
+  ]
+}
